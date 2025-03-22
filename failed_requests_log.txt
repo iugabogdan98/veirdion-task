@@ -8,8 +8,8 @@ ENOTFOUND: 187 error
 ,http://beagibbons.com -> getaddrinfo ENOTFOUND beagibbons.com
 ,http://1laurellane.com -> getaddrinfo ENOTFOUND 1laurellane.com
 ,http://motherssoontobe.com -> getaddrinfo ENOTFOUND motherssoontobe.com
-,http://rcgglobaltv.com -> getaddrinfo ENOTFOUND rcgglobaltv.com
 ,http://propertyguysnj.com -> getaddrinfo ENOTFOUND propertyguysnj.com
+,http://rcgglobaltv.com -> getaddrinfo ENOTFOUND rcgglobaltv.com
 ,http://starcomconsulting.com -> getaddrinfo ENOTFOUND starcomconsulting.com
 ,http://busiup.com -> getaddrinfo ENOTFOUND busiup.com
 ,http://scienceeducators.org -> getaddrinfo ENOTFOUND scienceeducators.org
@@ -20,8 +20,8 @@ ENOTFOUND: 187 error
 ,http://rrrobotictec.com -> getaddrinfo ENOTFOUND rrrobotictec.com
 ,http://cleaningsvccolumbiafalls.com -> getaddrinfo ENOTFOUND cleaningsvccolumbiafalls.com
 ,http://fortlaudedalepsychic.com -> getaddrinfo ENOTFOUND fortlaudedalepsychic.com
-,http://behindthewhitebeard.com -> getaddrinfo ENOTFOUND behindthewhitebeard.com
 ,http://thethriftyhijabi.com -> getaddrinfo ENOTFOUND thethriftyhijabi.com
+,http://behindthewhitebeard.com -> getaddrinfo ENOTFOUND behindthewhitebeard.com
 ,http://liketelevision.com -> getaddrinfo ENOTFOUND liketelevision.com
 ,http://virustarllc.com -> getaddrinfo ENOTFOUND virustarllc.com
 ,http://proofpass.com -> getaddrinfo ENOTFOUND proofpass.com
@@ -31,6 +31,7 @@ ENOTFOUND: 187 error
 ,http://bundlesbybassett.com -> getaddrinfo ENOTFOUND bundlesbybassett.com
 ,http://lineoftecnologia.com -> getaddrinfo ENOTFOUND lineoftecnologia.com
 ,http://innovativeinstruction.org -> getaddrinfo ENOTFOUND innovativeinstruction.org
+,http://hightechautoservicesantamonica.com -> getaddrinfo ENOTFOUND hightechautoservicesantamonica.com
 ,http://brooklyntreecompany.com -> getaddrinfo ENOTFOUND brooklyntreecompany.com
 ,http://adaini.com -> getaddrinfo ENOTFOUND adaini.com
 ,http://beautifulbodybabes.com -> getaddrinfo ENOTFOUND beautifulbodybabes.com
@@ -39,7 +40,7 @@ ENOTFOUND: 187 error
 ,http://bubongstore.com -> getaddrinfo ENOTFOUND bubongstore.com
 ,http://cedarwork.org -> getaddrinfo ENOTFOUND cedarwork.org
 ,http://epertase.com -> getaddrinfo ENOTFOUND epertase.com
-,http://hightechautoservicesantamonica.com -> getaddrinfo ENOTFOUND hightechautoservicesantamonica.com
+,http://id44.com -> getaddrinfo ENOTFOUND id44.com
 ,http://laflosd.com -> getaddrinfo ENOTFOUND laflosd.com
 ,http://highqualitypcs.com -> getaddrinfo ENOTFOUND highqualitypcs.com
 ,http://hannacho.com -> getaddrinfo ENOTFOUND hannacho.com
@@ -55,21 +56,20 @@ ENOTFOUND: 187 error
 ,http://cotherix.com -> getaddrinfo ENOTFOUND cotherix.com
 ,http://pd2llc.com -> getaddrinfo ENOTFOUND pd2llc.com
 ,http://studiobsalon.net -> getaddrinfo ENOTFOUND studiobsalon.net
-,http://id44.com -> getaddrinfo ENOTFOUND id44.com
 ,http://tax-masters.net -> getaddrinfo ENOTFOUND tax-masters.net
 ,http://abujaluxuryhome.com -> getaddrinfo ENOTFOUND abujaluxuryhome.com
 ,http://belozapp.com -> getaddrinfo ENOTFOUND belozapp.com
 ,http://parisfumc.org -> getaddrinfo ENOTFOUND parisfumc.org
 ,http://logansquarelaundry.com -> getaddrinfo ENOTFOUND logansquarelaundry.com
 ,http://al-advertising-diet-store.com -> getaddrinfo ENOTFOUND al-advertising-diet-store.com
+,http://artworkbydoyle.com -> getaddrinfo ENOTFOUND artworkbydoyle.com
 ,http://bc-hinger.com -> getaddrinfo ENOTFOUND bc-hinger.com
 ,http://beautyblueprintllc.com -> getaddrinfo ENOTFOUND beautyblueprintllc.com
-,http://artworkbydoyle.com -> getaddrinfo ENOTFOUND artworkbydoyle.com
 ,http://reveportraits.com -> getaddrinfo ENOTFOUND reveportraits.com
 ,http://lionsteelstructuresco.com -> getaddrinfo ENOTFOUND lionsteelstructuresco.com
 ,http://royaltycleaningva.co -> getaddrinfo ENOTFOUND royaltycleaningva.co
-,http://crossroadsrvpk.com -> getaddrinfo ENOTFOUND crossroadsrvpk.com
 ,http://ageanabrett.com -> getaddrinfo ENOTFOUND ageanasart.com
+,http://crossroadsrvpk.com -> getaddrinfo ENOTFOUND crossroadsrvpk.com
 ,http://nationalcapitalfitday.com -> getaddrinfo ENOTFOUND nationalcapitalfitday.com
 ,http://ordercrustandbuns.com -> getaddrinfo ENOTFOUND ordercrustandbuns.com
 ,http://daveandtracy.org -> getaddrinfo ENOTFOUND daveandtracy.org
@@ -100,6 +100,7 @@ ENOTFOUND: 187 error
 ,http://hometheatersystemgainesville.com -> getaddrinfo ENOTFOUND hometheatersystemgainesville.com
 ,http://pestcontrolmodestoca.org -> getaddrinfo ENOTFOUND pestcontrolmodestoca.org
 ,http://horizon-international.com -> getaddrinfo ENOTFOUND horizon-international.com
+,http://lukesmma.com -> getaddrinfo ENOTFOUND lukesmma.com
 ,http://sewardlostlakelodge.com -> getaddrinfo ENOTFOUND sewardlostlakelodge.com
 ,http://littleredfarmhousegifts.net -> getaddrinfo ENOTFOUND littleredfarmhousegifts.net
 ,http://cherrycreektributaries.com -> getaddrinfo ENOTFOUND cherrycreektributaries.com
@@ -115,7 +116,6 @@ ENOTFOUND: 187 error
 ,http://fkideas.com -> getaddrinfo ENOTFOUND fkideas.com
 ,http://sunnirey.shop -> getaddrinfo ENOTFOUND sunnirey.shop
 ,http://gambittechconsulting.com -> getaddrinfo ENOTFOUND gambittechconsulting.com
-,http://lukesmma.com -> getaddrinfo ENOTFOUND lukesmma.com
 ,http://the-chimneymasters.com -> getaddrinfo ENOTFOUND the-chimneymasters.com
 ,http://topbricole.site -> getaddrinfo ENOTFOUND topbricole.site
 ,http://myparee.com -> getaddrinfo ENOTFOUND myparee.com
@@ -132,9 +132,9 @@ ENOTFOUND: 187 error
 ,http://truefablespottery.com -> getaddrinfo ENOTFOUND truefablespottery.com
 ,http://jbdecker.com -> getaddrinfo ENOTFOUND jbdecker.com
 ,http://royaltylandscapinganddesign.com -> getaddrinfo ENOTFOUND royaltylandscapinganddesign.com
+,http://abcbni.com -> getaddrinfo ENOTFOUND abcbni.com
 ,http://annatietzhomes.com -> getaddrinfo ENOTFOUND annatietzhomes.com
 ,http://chevrv.com -> getaddrinfo ENOTFOUND chevrv.com
-,http://abcbni.com -> getaddrinfo ENOTFOUND abcbni.com
 ,http://greenershinglessanantonio.com -> getaddrinfo ENOTFOUND greenershinglessanantonio.com
 ,http://michaelskuceradentistry.com -> getaddrinfo ENOTFOUND michaelskuceradentistry.com
 ,http://vitalaehealingarts.com -> getaddrinfo ENOTFOUND vitalaehealingarts.com
@@ -144,6 +144,7 @@ ENOTFOUND: 187 error
 ,http://gallerycollage.com -> getaddrinfo ENOTFOUND gallerycollage.com
 ,http://osalra.com -> getaddrinfo ENOTFOUND osalra.com
 ,http://qualifiedportablegarages.com -> getaddrinfo ENOTFOUND qualifiedportablegarages.com
+,http://harlongroup.com -> getaddrinfo ENOTFOUND harlongroup.com
 ,http://reelsafarischarters.com -> getaddrinfo ENOTFOUND reelsafarischarters.com
 ,http://bellevueisd.org -> getaddrinfo ENOTFOUND bellevueisd.org
 ,http://h-glogistics.com -> getaddrinfo ENOTFOUND h-glogistics.com
@@ -159,7 +160,6 @@ ENOTFOUND: 187 error
 ,http://informatichiamoci.it -> getaddrinfo ENOTFOUND informatichiamoci.it
 ,http://mysavagenails.love -> getaddrinfo ENOTFOUND mysavagenails.love
 ,http://smallislandent.com -> getaddrinfo ENOTFOUND smallislandent.com
-,http://harlongroup.com -> getaddrinfo ENOTFOUND harlongroup.com
 ,http://frenchlakeautoparts.com -> getaddrinfo ENOTFOUND frenchlakeautoparts.com
 ,http://creativehealthplans.com -> getaddrinfo ENOTFOUND creativehealthplans.com
 ,http://fitcivic.com -> getaddrinfo ENOTFOUND fitcivic.com
@@ -167,6 +167,7 @@ ENOTFOUND: 187 error
 ,http://thej3group.com -> getaddrinfo ENOTFOUND thej3group.com
 ,http://hotlink2019.com -> getaddrinfo ENOTFOUND hotlink2019.com
 ,http://internationalmediasupply.com -> getaddrinfo ENOTFOUND internationalmediasupply.com
+,http://webranium.co.uk -> getaddrinfo ENOTFOUND webranium.co.uk
 ,http://masterguyscardetail.com -> getaddrinfo ENOTFOUND masterguyscardetail.com
 ,http://briggsmobiledetailing.com -> getaddrinfo ENOTFOUND briggsmobiledetailing.com
 ,http://pawsinmotionla.com -> getaddrinfo ENOTFOUND pawsinmotionla.com
@@ -174,7 +175,7 @@ ENOTFOUND: 187 error
 ,http://belanshion.com -> getaddrinfo ENOTFOUND belanshion.com
 ,http://romangalloway.com -> getaddrinfo ENOTFOUND romangalloway.com
 ,http://kalamazoomijobs.com -> getaddrinfo ENOTFOUND kalamazoomijobs.com
-,http://webranium.co.uk -> getaddrinfo ENOTFOUND webranium.co.uk
+,http://lammrubenstone.com -> getaddrinfo ENOTFOUND lammrubenstone.com
 ,http://nymphyacht.com -> getaddrinfo ENOTFOUND nymphyacht.com
 ,http://alphaquorumstore.com -> getaddrinfo ENOTFOUND alphaquorumstore.com
 ,http://baxland.com -> getaddrinfo ENOTFOUND baxland.com
@@ -182,29 +183,29 @@ ENOTFOUND: 187 error
 ,http://flash-wingo.com -> getaddrinfo ENOTFOUND flash-wingo.com
 ,http://getrazuzz.com -> getaddrinfo ENOTFOUND getrazuzz.com
 ,http://edgeinsurance.biz -> getaddrinfo ENOTFOUND edgeinsurance.biz
-,http://lammrubenstone.com -> getaddrinfo ENOTFOUND lammrubenstone.com
 ,http://sustainableracine.org -> getaddrinfo ENOTFOUND sustainableracine.org
 ,http://sagacitystays.com -> getaddrinfo ENOTFOUND sagacitystays.com
 ,http://valezio.com -> getaddrinfo ENOTFOUND valezio.com
 
-ERR_BAD_REQUEST: 84 error
- http://top-salon-hair-salon.business.site -> Request failed with status code 404
+ERR_BAD_REQUEST: 85 error
+ http://workitstudio.com -> Request failed with status code 403
+,http://top-salon-hair-salon.business.site -> Request failed with status code 404
 ,http://couplescounselingatlanta.com -> Request failed with status code 409
 ,http://johnstons-clothiers.business.site -> Request failed with status code 404
 ,http://getranx.com -> Request failed with status code 404
 ,http://palla-siding-and-windows.business.site -> Request failed with status code 404
-,http://workitstudio.com -> Request failed with status code 403
 ,http://amwindowcleaning.org -> Request failed with status code 404
 ,http://alpha-research-associates-research-institute.business.site -> Request failed with status code 404
 ,http://gygeneralservices.business.site -> Request failed with status code 404
 ,http://longrealty.com -> Request failed with status code 403
+,http://ghostmountain.org -> Request failed with status code 499
 ,http://lisinoprilfst.com -> Request failed with status code 404
 ,http://madebyjosy.com -> Request failed with status code 404
 ,http://themarketinggroupaz.com -> Request failed with status code 404
 ,http://spynewsletter.com -> Request failed with status code 404
 ,http://sunnova-solar-oakland.business.site -> Request failed with status code 404
-,http://cgllcairheatingandcoolingservices.business.site -> Request failed with status code 404
 ,http://hubbardstudios.com -> Request failed with status code 404
+,http://cgllcairheatingandcoolingservices.business.site -> Request failed with status code 404
 ,http://timberwoodofnaples.org -> Request failed with status code 404
 ,http://brilliantcityreiki.com -> Request failed with status code 404
 ,http://charlesmann-contracting.com -> Request failed with status code 401
@@ -212,10 +213,10 @@ ERR_BAD_REQUEST: 84 error
 ,http://airelibreavenue.com -> Request failed with status code 404
 ,http://richardsservicecenter.com -> Request failed with status code 404
 ,http://platformtemizlik.com -> Request failed with status code 404
-,http://wellbaum-apiaries.business.site -> Request failed with status code 404
 ,http://tashahmoore.com -> Request failed with status code 404
-,http://southsidedentalcare-dentalclinic.business.site -> Request failed with status code 404
 ,http://thejewishheritagefoundation.com -> Request failed with status code 404
+,http://wellbaum-apiaries.business.site -> Request failed with status code 404
+,http://southsidedentalcare-dentalclinic.business.site -> Request failed with status code 404
 ,http://aether-multimedia-llc.business.site -> Request failed with status code 404
 ,http://maquez-kennelz.business.site -> Request failed with status code 404
 ,http://ticketsregina.com -> Request failed with status code 403
@@ -239,35 +240,35 @@ ERR_BAD_REQUEST: 84 error
 ,http://artandglamstudio.com -> Request failed with status code 404
 ,http://sanchez-lawn-care-and-landscaping-services.business.site -> Request failed with status code 404
 ,http://coastaldefense.business.site -> Request failed with status code 404
-,http://reflexdelivery.com -> Request failed with status code 404
 ,http://ehardts.com -> Request failed with status code 403
+,http://reflexdelivery.com -> Request failed with status code 404
 ,http://winningham-iron-metal.business.site -> Request failed with status code 404
 ,http://hellorichmond.net -> Request failed with status code 404
 ,http://dionisioducusin.com -> Request failed with status code 404
 ,http://hitsforhomeless.com -> Request failed with status code 403
 ,http://central-texas-mobile-notary-notary-public.business.site -> Request failed with status code 404
-,http://beaconhillrealtygroup.com -> Request failed with status code 404
 ,http://clarionstl.com -> Request failed with status code 404
-,http://torres-hvac.business.site -> Request failed with status code 404
+,http://beaconhillrealtygroup.com -> Request failed with status code 404
 ,http://mjwm225.com -> Request failed with status code 403
+,http://torres-hvac.business.site -> Request failed with status code 404
 ,http://down-southmoving.business.site -> Request failed with status code 404
-,http://defioptions.org -> Request failed with status code 404
 ,http://caninereproductivecenter.com -> Request failed with status code 404
+,http://defioptions.org -> Request failed with status code 404
 ,http://ambazoniafoundation.org -> Request failed with status code 403
 ,http://djs-general-service-llc.business.site -> Request failed with status code 404
 ,http://lorettola.org -> Request failed with status code 403
 ,http://whitwell-accounting-llc.business.site -> Request failed with status code 404
-,http://energy-health-oriental-massage.business.site -> Request failed with status code 404
 ,http://banconex.com -> Request failed with status code 403
+,http://energy-health-oriental-massage.business.site -> Request failed with status code 404
 ,http://mghomeremodelling.info -> Request failed with status code 404
 ,http://fine-art-construction.business.site -> Request failed with status code 404
 ,http://neptune-society.com -> Request failed with status code 403
-,http://northwest-georgia-regional-commission.business.site -> Request failed with status code 404
 ,http://oddwomannailsandmore.com -> Request failed with status code 404
+,http://northwest-georgia-regional-commission.business.site -> Request failed with status code 404
 ,http://caring-hands-seniorsolutionsgroupinc.business.site -> Request failed with status code 404
+,http://toptok.info -> Request failed with status code 403
 ,http://peakdds.com -> Request failed with status code 403
 ,http://fedorovfilms.com -> Request failed with status code 404
-,http://toptok.info -> Request failed with status code 403
 ,http://hairdesigners-hairsalon.business.site -> Request failed with status code 404
 ,http://poocheshouseboutique.com -> Request failed with status code 404
 ,http://big-dog-boarding.business.site -> Request failed with status code 404
@@ -277,6 +278,20 @@ ECONNRESET: 3 error
  http://highwayonerealestate.com -> socket hang up
 ,http://clinejewelers.com -> socket hang up
 ,http://mottshay.com -> socket hang up
+
+ECONNABORTED: 12 error
+ http://yingtexun.com -> timeout of 20000ms exceeded
+,http://helixapartments.com -> timeout of 20000ms exceeded
+,http://elijahvest.com -> timeout of 20000ms exceeded
+,http://northsidemeadows.com -> timeout of 20000ms exceeded
+,http://audinashville.com -> timeout of 20000ms exceeded
+,http://celebaesthetics.com -> timeout of 20000ms exceeded
+,http://colonsource.com -> timeout of 20000ms exceeded
+,http://rightstudents.org -> timeout of 20000ms exceeded
+,http://gametableadventures.com -> timeout of 20000ms exceeded
+,http://transtekautosales.com -> timeout of 20000ms exceeded
+,http://aesgoldmine.com -> timeout of 20000ms exceeded
+,http://befeni-usa.com -> timeout of 20000ms exceeded
 
 ERR_BAD_RESPONSE: 6 error
  http://dumpsterrentalalhambraca.com -> Request failed with status code 523
@@ -293,21 +308,6 @@ CERT_HAS_EXPIRED: 3 error
  http://creativitythroughconstraints.com -> certificate has expired
 ,http://myacem.com -> certificate has expired
 ,http://smv-inc.com -> certificate has expired
-
-ECONNABORTED: 13 error
- http://yingtexun.com -> timeout of 20000ms exceeded
-,http://helixapartments.com -> timeout of 20000ms exceeded
-,http://elijahvest.com -> timeout of 20000ms exceeded
-,http://northsidemeadows.com -> timeout of 20000ms exceeded
-,http://celebaesthetics.com -> timeout of 20000ms exceeded
-,http://colonsource.com -> timeout of 20000ms exceeded
-,http://libertybaptist.org -> timeout of 20000ms exceeded
-,http://rightstudents.org -> timeout of 20000ms exceeded
-,http://gametableadventures.com -> timeout of 20000ms exceeded
-,http://transtekautosales.com -> timeout of 20000ms exceeded
-,http://slushpoolglobal.com -> timeout of 20000ms exceeded
-,http://aesgoldmine.com -> timeout of 20000ms exceeded
-,http://befeni-usa.com -> timeout of 20000ms exceeded
 
 ECONNREFUSED: 1 error
  http://muhlbauerlab.com -> connect ECONNREFUSED 24.103.146.202:80

@@ -187,7 +187,7 @@ ENOTFOUND: 187 error
 ,http://sagacitystays.com -> getaddrinfo ENOTFOUND sagacitystays.com
 ,http://valezio.com -> getaddrinfo ENOTFOUND valezio.com
 
-ERR_BAD_REQUEST: 85 error
+ERR_BAD_REQUEST: 84 error
  http://workitstudio.com -> Request failed with status code 403
 ,http://top-salon-hair-salon.business.site -> Request failed with status code 404
 ,http://couplescounselingatlanta.com -> Request failed with status code 409
@@ -198,7 +198,6 @@ ERR_BAD_REQUEST: 85 error
 ,http://alpha-research-associates-research-institute.business.site -> Request failed with status code 404
 ,http://gygeneralservices.business.site -> Request failed with status code 404
 ,http://longrealty.com -> Request failed with status code 403
-,http://ghostmountain.org -> Request failed with status code 499
 ,http://lisinoprilfst.com -> Request failed with status code 404
 ,http://madebyjosy.com -> Request failed with status code 404
 ,http://themarketinggroupaz.com -> Request failed with status code 404
@@ -284,11 +283,11 @@ ECONNABORTED: 12 error
 ,http://helixapartments.com -> timeout of 20000ms exceeded
 ,http://elijahvest.com -> timeout of 20000ms exceeded
 ,http://northsidemeadows.com -> timeout of 20000ms exceeded
-,http://audinashville.com -> timeout of 20000ms exceeded
 ,http://celebaesthetics.com -> timeout of 20000ms exceeded
 ,http://colonsource.com -> timeout of 20000ms exceeded
 ,http://rightstudents.org -> timeout of 20000ms exceeded
 ,http://gametableadventures.com -> timeout of 20000ms exceeded
+,http://statelinekids.com -> timeout of 20000ms exceeded
 ,http://transtekautosales.com -> timeout of 20000ms exceeded
 ,http://aesgoldmine.com -> timeout of 20000ms exceeded
 ,http://befeni-usa.com -> timeout of 20000ms exceeded

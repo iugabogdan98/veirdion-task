@@ -111,3 +111,7 @@ positives ), but mainly phone numbers.
 A little bit simpler, as we can create a regex to match the root of usual social media websites, and they
 generally have links pointing to them.
 
+#### Later update: I found a bug ( I used the landing url when trying to find the contact page) and now my success phoneNumbers jumped to 459 websites
+
+![](assets/Task1_fixed_bug.png)
+

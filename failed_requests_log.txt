@@ -101,6 +101,7 @@ ENOTFOUND: 187 error
 ,http://pestcontrolmodestoca.org -> getaddrinfo ENOTFOUND pestcontrolmodestoca.org
 ,http://horizon-international.com -> getaddrinfo ENOTFOUND horizon-international.com
 ,http://lukesmma.com -> getaddrinfo ENOTFOUND lukesmma.com
+,http://bintiboutique.llc -> getaddrinfo ENOTFOUND bintiboutique.llc
 ,http://sewardlostlakelodge.com -> getaddrinfo ENOTFOUND sewardlostlakelodge.com
 ,http://littleredfarmhousegifts.net -> getaddrinfo ENOTFOUND littleredfarmhousegifts.net
 ,http://cherrycreektributaries.com -> getaddrinfo ENOTFOUND cherrycreektributaries.com
@@ -170,7 +171,6 @@ ENOTFOUND: 187 error
 ,http://webranium.co.uk -> getaddrinfo ENOTFOUND webranium.co.uk
 ,http://masterguyscardetail.com -> getaddrinfo ENOTFOUND masterguyscardetail.com
 ,http://briggsmobiledetailing.com -> getaddrinfo ENOTFOUND briggsmobiledetailing.com
-,http://pawsinmotionla.com -> getaddrinfo ENOTFOUND pawsinmotionla.com
 ,http://sandiegorealestatejobs.net -> getaddrinfo ENOTFOUND sandiegorealestatejobs.net
 ,http://belanshion.com -> getaddrinfo ENOTFOUND belanshion.com
 ,http://romangalloway.com -> getaddrinfo ENOTFOUND romangalloway.com
@@ -187,7 +187,7 @@ ENOTFOUND: 187 error
 ,http://sagacitystays.com -> getaddrinfo ENOTFOUND sagacitystays.com
 ,http://valezio.com -> getaddrinfo ENOTFOUND valezio.com
 
-ERR_BAD_REQUEST: 84 error
+ERR_BAD_REQUEST: 85 error
  http://workitstudio.com -> Request failed with status code 403
 ,http://top-salon-hair-salon.business.site -> Request failed with status code 404
 ,http://couplescounselingatlanta.com -> Request failed with status code 409
@@ -267,6 +267,7 @@ ERR_BAD_REQUEST: 84 error
 ,http://caring-hands-seniorsolutionsgroupinc.business.site -> Request failed with status code 404
 ,http://toptok.info -> Request failed with status code 403
 ,http://peakdds.com -> Request failed with status code 403
+,http://americanguardrailsupply.com -> Request failed with status code 439
 ,http://fedorovfilms.com -> Request failed with status code 404
 ,http://hairdesigners-hairsalon.business.site -> Request failed with status code 404
 ,http://poocheshouseboutique.com -> Request failed with status code 404
@@ -278,25 +279,27 @@ ECONNRESET: 3 error
 ,http://clinejewelers.com -> socket hang up
 ,http://mottshay.com -> socket hang up
 
-ECONNABORTED: 12 error
+ECONNABORTED: 13 error
  http://yingtexun.com -> timeout of 20000ms exceeded
 ,http://helixapartments.com -> timeout of 20000ms exceeded
 ,http://elijahvest.com -> timeout of 20000ms exceeded
 ,http://northsidemeadows.com -> timeout of 20000ms exceeded
+,http://audinashville.com -> timeout of 20000ms exceeded
 ,http://celebaesthetics.com -> timeout of 20000ms exceeded
 ,http://colonsource.com -> timeout of 20000ms exceeded
 ,http://rightstudents.org -> timeout of 20000ms exceeded
 ,http://gametableadventures.com -> timeout of 20000ms exceeded
-,http://statelinekids.com -> timeout of 20000ms exceeded
 ,http://transtekautosales.com -> timeout of 20000ms exceeded
+,http://downeygroupllc.com -> timeout of 20000ms exceeded
 ,http://aesgoldmine.com -> timeout of 20000ms exceeded
 ,http://befeni-usa.com -> timeout of 20000ms exceeded
 
-ERR_BAD_RESPONSE: 6 error
+ERR_BAD_RESPONSE: 7 error
  http://dumpsterrentalalhambraca.com -> Request failed with status code 523
 ,http://knickonwood.com -> Request failed with status code 500
 ,http://crazy.builders -> Request failed with status code 500
 ,http://deliverance-ministry-new-york.com -> Request failed with status code 500
+,http://pawsinmotionla.com -> Request failed with status code 503
 ,http://lloydfeinberg.com -> Request failed with status code 503
 ,http://flatpondpublishing.com -> Request failed with status code 500
 

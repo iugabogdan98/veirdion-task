@@ -16,6 +16,7 @@ interface ScrapeResult {
     success: boolean;
     url: string;
     phoneNumbers?: string;
+    socialMediaLinks?: string;
     title?: string;
     error?: string;
     errorCode: string;
@@ -62,29 +63,42 @@ const parseDomainsFromCsv = async (path: string): Promise<string[]> => {
 
 
 const handleContactPage = async ($: CheerioAPI, url: string) => {
-    const possibleLinks = $('a[href]')
+    const possibleLinks = [...new Set($('a[href]')
         .map((i, el) => $(el).attr('href'))
         .get()
         .filter(href =>
             href.match(constants.contactPageRegex.default)
-        );
+        ))];
 
-    const finalLink = possibleLinks.map(link => new URL(link, url).href)[0];
+    let contactAndAboutLinks = '';
+    const finalLinks = possibleLinks.map(link => new URL(link, url).href);
 
-    const contactPage = await axios.get(url, axiosOptions).then((response: AxiosResponse) => response.data).catch((error: AxiosError) => {
-        console.log('Ignoring Error fetching contact page: ', finalLink);
-        return error;
-    });
+    for (let link of finalLinks)
+        contactAndAboutLinks += await axios.get(link, axiosOptions).then((response: AxiosResponse) => response.data).catch((error: AxiosError) => {
+            console.log('Ignoring Error fetching contact page: ', link);
+            return error;
+        });
 
-    const $contactPage = cheerio.load(contactPage ?? "");
+    const $contactPage = cheerio.load(contactAndAboutLinks ?? "");
     $contactPage('script, style').remove();
     const textContent = $contactPage('body').text();
 
-    return [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])];
+    return {
+        phoneNumbers: [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])],
+        socialMediaLinks: [...new Set(textContent.match(constants.socialMediaRegex.default) || [])],
+    };
 }
 
 const parseTextFromPage = async (textContent: string, $: CheerioAPI, url: string) => {
     let phoneNumbers = [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])];
+    let socialMediaLinks = [...new Set($('a[href]')
+        .map((i, el) => $(el).attr('href'))
+        .get()
+        .filter(href =>
+            href.match(constants.socialMediaRegex.default) && href.length < 100
+        ) || [])];
+
+    console.log("URL Social Media Links found: ", url, socialMediaLinks.toString());
 
     const contactPageMatches = [...new Set(textContent.match(constants.contactPageRegex.default) || [])];
     const contactLinks = contactPageMatches.filter(elem => elem.length < 100); // remove long strings, likely not contact pages
@@ -92,10 +106,16 @@ const parseTextFromPage = async (textContent: string, $: CheerioAPI, url: string
     if (contactLinks.length > 0) {
         const phoneNumbersContactPage = await handleContactPage($, url);
         phoneNumbers = [...new Set([...phoneNumbers.map((number) => number.trim()),
-            ...phoneNumbersContactPage.map((number) => number.trim())])];
+            ...phoneNumbersContactPage.phoneNumbers.map((number) => number.trim())])];
     }
-    console.log("URL Phone numbers found: ", url, phoneNumbers.toString());
-    return {success: true, url, phoneNumbers: phoneNumbers.toString(), errorCode: ""};
+    // console.log("URL Phone numbers found: ", url, phoneNumbers.toString());
+    return {
+        success: true,
+        url,
+        phoneNumbers: phoneNumbers.toString(),
+        socialMediaLinks: socialMediaLinks.toString(),
+        errorCode: ""
+    };
 }
 
 const scrapePageWithPuppeteer = async (url: string, browser: Browser) => {
@@ -154,7 +174,7 @@ export const scrape = async (req: Request, res: Response) => {
 
     const limit = pLimit(configs.P_LIMIT);
     const urls: string[] = (await parseDomainsFromCsv(configs.COMPANIES_PATH))
-    // .splice(0, 150);
+    // .splice(0, 100);
 
 
     const promises = urls.map((url) =>
@@ -190,6 +210,7 @@ export const scrape = async (req: Request, res: Response) => {
     res.status(200).json({
         successCount: results.length,
         successPhoneNumbersCount: results.reduce((acc, curr) => acc + (curr.phoneNumbers ? 1 : 0), 0),
+        socialMediaLinksCount: results.reduce((acc, curr) => acc + (curr.socialMediaLinks ? 1 : 0), 0),
         failCount: failsCount,
         successResults: results
     });

@@ -7,6 +7,10 @@ import * as fs from "fs";
 import {configs} from "../configs";
 import pLimit from "p-limit";
 import {constants} from "../constants";
+import {Browser} from 'puppeteer';
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+
 
 interface ScrapeResult {
     success: boolean;
@@ -79,23 +83,51 @@ const handleContactPage = async ($: CheerioAPI, url: string) => {
     return [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])];
 }
 
-const handleAndParseResponse = async (response: AxiosResponse, url: string) => {
-    const $ = cheerio.load(response.data);
-    // Remove script and style elements to clean up the content
-    $('script, style').remove();
-    const textContent = $('body').text();
-
+const parseTextFromPage = async (textContent: string, $: CheerioAPI, url: string) => {
     let phoneNumbers = [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])];
 
     const contactPageMatches = [...new Set(textContent.match(constants.contactPageRegex.default) || [])];
-    const contactLinks = contactPageMatches.filter(elem => elem.length < 20); // remove long strings, likely not contact pages
+    const contactLinks = contactPageMatches.filter(elem => elem.length < 100); // remove long strings, likely not contact pages
 
     if (contactLinks.length > 0) {
         const phoneNumbersContactPage = await handleContactPage($, url);
-        phoneNumbers = [...new Set([...phoneNumbers.map((number) => number.trim()), ...phoneNumbersContactPage.map((number) => number.trim())])];
+        phoneNumbers = [...new Set([...phoneNumbers.map((number) => number.trim()),
+            ...phoneNumbersContactPage.map((number) => number.trim())])];
+    }
+    console.log("URL Phone numbers found: ", url, phoneNumbers.toString());
+    return {success: true, url, phoneNumbers: phoneNumbers.toString(), errorCode: ""};
+}
+
+const scrapePageWithPuppeteer = async (url: string, browser: Browser) => {
+    try {
+        const page = await browser.newPage()
+        await page.setUserAgent(
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36'
+        );
+        await page.setExtraHTTPHeaders({
+            'Accept-Language': 'en-US,en;q=0.9',
+        });
+        await page.goto(url, {waitUntil: 'networkidle2'});
+        const puppeteerPage = await page.evaluate(() => document.body.innerHTML) ?? '';
+        const $puppeteer = cheerio.load(puppeteerPage);
+        $puppeteer('script, style').remove();
+        return $puppeteer('body').text();
+    } catch (error) {
+        console.error('Error scraping the Contact page With Puppeteer :', error);
+    }
+};
+
+const handleAndParseResponse = async (response: AxiosResponse, url: string, browser: Browser) => {
+    const $ = cheerio.load(response.data);
+    $('script, style').remove();
+    let textContent = $('body').text();
+
+    if (textContent.trim().length < 100) {
+        textContent += await scrapePageWithPuppeteer(url, browser) ?? '';
     }
 
-    return {success: true, url, phoneNumbers: phoneNumbers.toString(), errorCode: ""};
+
+    return await parseTextFromPage(textContent, $, url);
 }
 
 const handleErrorAxios = (error: AxiosError, url: string) => {
@@ -109,9 +141,20 @@ export const scrape = async (req: Request, res: Response) => {
     const fails: Map<string, ScrapeResult[]> = new Map();
     let failsCount = 0;
 
+    puppeteer.use(StealthPlugin());
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-blink-features=AutomationControlled',
+        ],
+    });
+
+
     const limit = pLimit(configs.P_LIMIT);
     const urls: string[] = (await parseDomainsFromCsv(configs.COMPANIES_PATH))
-    // .splice(0, 100);
+    // .splice(0, 150);
 
 
     const promises = urls.map((url) =>
@@ -119,7 +162,7 @@ export const scrape = async (req: Request, res: Response) => {
             axios
                 .get(url, axiosOptions)
                 .then((response) => {
-                    return handleAndParseResponse(response, url);
+                    return handleAndParseResponse(response, url, browser);
                 })
                 .catch((error) => {
                     return handleErrorAxios(error, url);
@@ -141,6 +184,8 @@ export const scrape = async (req: Request, res: Response) => {
             failsCount++;
         }
     });
+
+    await browser.close();
 
     res.status(200).json({
         successCount: results.length,

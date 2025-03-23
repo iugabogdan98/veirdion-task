@@ -87,7 +87,7 @@ We can start with just words in english, the results are :
 Managed to get 228 contact pages, keeping the success rate at 70%, but slashing the time to 1 minute, 4 s.
 
 I did that by optimizing the concurrent requests to be **3 x number of CPU's ( 24 in my case )**,
-and closing other thread hungry processes, so no more Spotify for me while waiting for the results.
+and closing other thread hungry processes. Any more, and it starts to throttle the requests.
 
 ##### Next, I will decide on the phone number, social media and address Regex.
 
@@ -98,5 +98,16 @@ I want to hit the landing page and the contact page with them, maximizing the ch
 
 ![](assets/Step1_get_Contact_Page.png)
 
-334 phone numbers found, not bad.
+Optimization:
+Some pages use JS frameworks and while we fetch them they don't have the content available it's the JS is loaded.
+We will use Puppeteer exatcly for these cases. One example fo page where we managed to get the phone number
+using puppeteer is: "http://timent.com"
+
+With all this in place, I managed to scrape **312 pages** for phone number ( with a fair amount of noise and false
+positives ), but mainly phone numbers.
+
+##### Social media
+
+A little bit simpler, as we can create a regex to match the root of usual social media websites, and they
+generally have links pointing to them.
 

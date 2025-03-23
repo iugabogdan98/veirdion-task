@@ -94,7 +94,8 @@ and closing other thread hungry processes. Any more, and it starts to throttle t
 I want to hit the landing page and the contact page with them, maximizing the chances of getting the data.
 
 - Phone number: I will use a simple regex that matches the most common phone number formats : up to 13 digits, ( 1
-  special chars, 2 for country code , 10 for the number ) with optional spaces, dashes, brackets and the country code.
+  special chars, with variations of groups between 2 and 4 chars) with optional spaces, dashes, brackets and the country
+  code.
 
 ![](assets/Step1_get_Contact_Page.png)
 
@@ -109,9 +110,57 @@ positives ), but mainly phone numbers.
 ##### Social media
 
 A little bit simpler, as we can create a regex to match the root of usual social media websites, and they
-generally have links pointing to them.
+generally have links pointing to them. I will still crawl the contact and about us pages, as I already have access to
+them and they are the most likely to have the links.
 
-#### Later update: I found a bug ( I used the landing url when trying to find the contact page) and now my success phoneNumbers jumped to 459 websites
+#### Later update: I found a bug ( I used the landing url when trying to find the contact page) and now my success phoneNumbers jumped to 457 websites
 
 ![](assets/Task1_fixed_bug.png)
 
+##### Address
+
+It's optional, but while I'm still at it, I can use a generic regex to catch a few of them.
+Nothing too specific, going for the standard format of an address, with a few variations.
+
+While it's more restrictive, I managed to get 140+ addresses, with a few false positives.
+
+We have a total of :
+![](assets/Task1_final_results.png)
+
+##### While requests are fluctuating because of timeout/denials, we get consistently round 696 websites, giving us a success rate of almost 70% in well under 2 minutes.
+
+Out of these 696 websites, we managed to get relative to this number of websites:
+
+- Around 450 with at one phone number, around 65% fill rate. A lot of noise here, but a lot of data too.
+- Around 370 social media links, around 53%. Much less noise, as the Regex is more targeted here.
+- Around 150 addresses, around 22%. The most restrictive and centered around the USA, but still a good amount of data.
+
+With a full fill example of :
+
+        {
+            "success": true,
+            "url": "http://dolee-rentals.com",
+            "phoneNumbers": "229) 436-9620,229) 344-5037",
+            "socialMediaLinks": "https://facebook.com/DoLee-Rentals-Inc-141860142549724,https://twitter.com/DexYPHQ/,https://twitter.com/",
+            "addresses": "1001 W Oglethorpe Blvd, Albany, GA 31701",
+            "errorCode": ""
+        },
+
+While this first iteration is ok, there are some things I can improve on:
+
+- More usage of Puppeteer when needed, I just covered an edge case, but there are more.
+- Regex might not the best solution, as it's not a case of 'one size fits all'. I can manipulate more the
+  HTML and integrate more tags for contact info. Go after targeted classes, ids, etc.
+- I tried to catch in my regexes international cases too, but I think a more targeted approach based on the locales is
+  better.
+- Reduce the noise
+
+#### Optimizations:
+
+I target to stay under 2 mins from the start, and I managed to achive that. With smarter DOM manipulation and
+better regexes, I can reduce the time even more. Using pLimit helped a lot, and the only bottleneck
+is the time to get some websites ( up to 20 seconds or more ).
+
+I will save both the failed req and successful ones in the output folder, for future reference.
+
+## Step 2:

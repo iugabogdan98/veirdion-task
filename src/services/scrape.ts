@@ -17,6 +17,7 @@ interface ScrapeResult {
     url: string;
     phoneNumbers?: string;
     socialMediaLinks?: string;
+    addresses?: string;
     title?: string;
     error?: string;
     errorCode: string;
@@ -36,15 +37,19 @@ const axiosOptions = {
     timeout: configs.WEBSITE_READ_TIMEOUT,
 };
 
-const outputFailsByCodeInFile = (fails: Map<string, ScrapeResult[]>) => {
+const outputInFile = (fails: Map<string, ScrapeResult[]>, path: string) => {
     let failsString = "";
     fails.forEach(
         (value, key) =>
             (failsString += `${key}: ${value.length} error\n ${value.map((elem) => `${elem.url} -> ${elem.error}\n`)}\n`)
     );
 
-    fs.writeFileSync("failed_requests_log.txt", failsString);
+    fs.writeFileSync(path, failsString);
 };
+
+const outputInFileSuccessCSV = (results: ScrapeResult[], path: string) => {
+    fs.writeFileSync(path, results.map((elem) => `"${elem.url}","${elem.phoneNumbers}","${elem.socialMediaLinks}","${elem.addresses}"\n`).join(''));
+}
 
 const parseDomainsFromCsv = async (path: string): Promise<string[]> => {
     const domains: string[] = [];
@@ -61,6 +66,24 @@ const parseDomainsFromCsv = async (path: string): Promise<string[]> => {
     return domains;
 };
 
+const setOfPhoneNumbers = (textContent: string) => {
+    return [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])];
+}
+
+const setOfSocialMediaLinks = ($: CheerioAPI) => {
+    return [...new Set($('a[href]')
+        .map((i, el) => $(el).attr('href'))
+        .get()
+        .filter(href =>
+            href.match(constants.socialMediaRegex.default) && href.length < 100
+        ) || [])];
+}
+
+const setOfAddresses = (textContent: string) => {
+    return [...new Set(textContent.match(constants.addressRegex.default)?.map(
+            (address) => address.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim())
+        ?? [])];
+}
 
 const handleContactPage = async ($: CheerioAPI, url: string) => {
     const possibleLinks = [...new Set($('a[href]')
@@ -75,7 +98,6 @@ const handleContactPage = async ($: CheerioAPI, url: string) => {
 
     for (let link of finalLinks)
         contactAndAboutLinks += await axios.get(link, axiosOptions).then((response: AxiosResponse) => response.data).catch((error: AxiosError) => {
-            console.log('Ignoring Error fetching contact page: ', link);
             return error;
         });
 
@@ -84,36 +106,36 @@ const handleContactPage = async ($: CheerioAPI, url: string) => {
     const textContent = $contactPage('body').text();
 
     return {
-        phoneNumbers: [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])],
-        socialMediaLinks: [...new Set(textContent.match(constants.socialMediaRegex.default) || [])],
+        phoneNumbers: [...setOfPhoneNumbers(textContent)],
+        socialMediaLinks: [...setOfSocialMediaLinks($contactPage)],
+        addresses: [...setOfAddresses(textContent)]
     };
 }
 
 const parseTextFromPage = async (textContent: string, $: CheerioAPI, url: string) => {
-    let phoneNumbers = [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])];
-    let socialMediaLinks = [...new Set($('a[href]')
-        .map((i, el) => $(el).attr('href'))
-        .get()
-        .filter(href =>
-            href.match(constants.socialMediaRegex.default) && href.length < 100
-        ) || [])];
-
-    console.log("URL Social Media Links found: ", url, socialMediaLinks.toString());
+    let phoneNumbers = [...setOfPhoneNumbers(textContent)];
+    let socialMediaLinks = [...setOfSocialMediaLinks($)];
+    let addresses = [...setOfAddresses(textContent)];
 
     const contactPageMatches = [...new Set(textContent.match(constants.contactPageRegex.default) || [])];
     const contactLinks = contactPageMatches.filter(elem => elem.length < 100); // remove long strings, likely not contact pages
 
     if (contactLinks.length > 0) {
-        const phoneNumbersContactPage = await handleContactPage($, url);
+        const contactAndAboutUsPages = await handleContactPage($, url);
         phoneNumbers = [...new Set([...phoneNumbers.map((number) => number.trim()),
-            ...phoneNumbersContactPage.phoneNumbers.map((number) => number.trim())])];
+            ...contactAndAboutUsPages.phoneNumbers.map((number) => number.trim())])];
+        socialMediaLinks = [...new Set([...socialMediaLinks.map((link) => link.trim()),
+            ...contactAndAboutUsPages.socialMediaLinks.map((link) => link.trim())])];
+        addresses = [...new Set([...addresses.map((address) => address.trim()),
+            ...contactAndAboutUsPages.addresses.map((address) => address.trim())])];
     }
-    // console.log("URL Phone numbers found: ", url, phoneNumbers.toString());
+    console.log("Success scraping: ", url);
     return {
         success: true,
         url,
         phoneNumbers: phoneNumbers.toString(),
         socialMediaLinks: socialMediaLinks.toString(),
+        addresses: addresses.toString(),
         errorCode: ""
     };
 }
@@ -133,7 +155,7 @@ const scrapePageWithPuppeteer = async (url: string, browser: Browser) => {
         $puppeteer('script, style').remove();
         return $puppeteer('body').text();
     } catch (error) {
-        console.error('Error scraping the Contact page With Puppeteer :', error);
+        return '';
     }
 };
 
@@ -173,8 +195,7 @@ export const scrape = async (req: Request, res: Response) => {
 
 
     const limit = pLimit(configs.P_LIMIT);
-    const urls: string[] = (await parseDomainsFromCsv(configs.COMPANIES_PATH))
-    // .splice(0, 100);
+    const urls: string[] = (await parseDomainsFromCsv(configs.COMPANIES_PATH));
 
 
     const promises = urls.map((url) =>
@@ -206,11 +227,14 @@ export const scrape = async (req: Request, res: Response) => {
     });
 
     await browser.close();
+    outputInFile(fails, './output/failed_requests_log.txt');
+    outputInFileSuccessCSV(results, './output/successful_requests_log.txt');
 
     res.status(200).json({
         successCount: results.length,
         successPhoneNumbersCount: results.reduce((acc, curr) => acc + (curr.phoneNumbers ? 1 : 0), 0),
         socialMediaLinksCount: results.reduce((acc, curr) => acc + (curr.socialMediaLinks ? 1 : 0), 0),
+        addressCount: results.reduce((acc, curr) => acc + (curr.addresses ? 1 : 0), 0),
         failCount: failsCount,
         successResults: results
     });
@@ -218,5 +242,4 @@ export const scrape = async (req: Request, res: Response) => {
     console.log("Scraping completed");
     console.log("Results #:", results.length);
     console.log("Fails #:", failsCount);
-    outputFailsByCodeInFile(fails);
 };

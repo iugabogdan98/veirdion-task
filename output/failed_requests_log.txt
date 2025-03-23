@@ -278,18 +278,16 @@ ECONNRESET: 3 error
 ,http://clinejewelers.com -> socket hang up
 ,http://mottshay.com -> socket hang up
 
-ECONNABORTED: 14 error
+ECONNABORTED: 12 error
  http://yingtexun.com -> timeout of 20000ms exceeded
 ,http://helixapartments.com -> timeout of 20000ms exceeded
 ,http://elijahvest.com -> timeout of 20000ms exceeded
 ,http://northsidemeadows.com -> timeout of 20000ms exceeded
-,http://car.hk -> timeout of 20000ms exceeded
 ,http://celebaesthetics.com -> timeout of 20000ms exceeded
 ,http://colonsource.com -> timeout of 20000ms exceeded
 ,http://rightstudents.org -> timeout of 20000ms exceeded
 ,http://gametableadventures.com -> timeout of 20000ms exceeded
 ,http://transtekautosales.com -> timeout of 20000ms exceeded
-,http://returndeals.net -> timeout of 20000ms exceeded
 ,http://aesgoldmine.com -> timeout of 20000ms exceeded
 ,http://mygentxt.org -> timeout of 20000ms exceeded
 ,http://befeni-usa.com -> timeout of 20000ms exceeded

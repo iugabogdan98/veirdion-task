@@ -7,4 +7,5 @@ export const configs = {
     WEBSITE_READ_TIMEOUT: 20000,
     COMPANIES_PATH: './src/input/sample-websites.csv',
     COMPANIES_WITH_NAMES_PATH: './input/sample-websites-company-names.csv',
+    OUTPUT_PATH: './output/',
 }

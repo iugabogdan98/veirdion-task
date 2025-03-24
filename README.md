@@ -3,7 +3,11 @@
 ### API endpoints:
 
     GET /hello -> Greeting you back :D
+    
     GET /scrape -> Scrapes the websites in the sample-websites.csv file and returns the titles of the websites
+    
+    GET /search -> Searches the scraped data for the given query, returns the results
+    query params: - name, website, phoneNumber, facebook
 
 ### Project config, dependencies and environment:
 
@@ -11,6 +15,7 @@
 - Node.js (v20.9.0) with Typescript | Express.js | Axios -> standard project config
 - Cheerio -> parsing and manipulating HTML
 - p-limit -> limit the number of concurrent promises
+- minisearch -> search engine for the data ( in-mem alternative in node for ElasticSearch )
 
 ## Step 1:
 
@@ -164,3 +169,37 @@ is the time to get some websites ( up to 20 seconds or more ).
 I will save both the failed req and successful ones in the output folder, for future reference.
 
 ## Step 2:
+
+Now that I have the data, I will save it in output/successful_scrapes.csv to have it saved as a base
+for the search service.
+Now everytime we start the service, it will parse the data from both csv files and merge them into a single
+searchable JSON array of company details.
+
+The dataset is small enough to use in-memory solutions, as opposed starting an ElastricSearch instance.
+I will use minisearch, a simple but complete solution that I can fine tune to search the data by trial and error.
+In a large data set, I would use ElasticSearch, as it's more robust and scalable,
+but in this case it feels like trying to hit kill a fly with a bazooka. Cool in theory, but expensive.
+
+The boosts in my search are:
+
+- domain name: the most important, as it's a unique identifier
+- company all names, second most important, as it's really leading to a good result
+- phone number, facebook : given the noise and, I will boost just them a little
+
+Not much else, keep it a bit fuzzy, use OR to have felixiblity in the search.
+
+The results are satisfying, I will publish them (testing the api with the recomended input) in the root of the project
+in.
+
+Results :
+
+- 108 requests: all the data independent and the request with all the data combined.
+- 12 red -> returned other result rather what was expected
+- 10 orange -> fuzzy data, put in there to show the flexibility of the search
+- The rest returned the expected result !!! :D
+
+Full analysis in the file **API_RESULTS.pdf**
+
+STEP 3:
+
+

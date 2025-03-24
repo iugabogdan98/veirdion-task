@@ -187,7 +187,7 @@ ENOTFOUND: 187 error
 ,http://sagacitystays.com -> getaddrinfo ENOTFOUND sagacitystays.com
 ,http://valezio.com -> getaddrinfo ENOTFOUND valezio.com
 
-ERR_BAD_REQUEST: 84 error
+ERR_BAD_REQUEST: 83 error
  http://workitstudio.com -> Request failed with status code 403
 ,http://top-salon-hair-salon.business.site -> Request failed with status code 404
 ,http://couplescounselingatlanta.com -> Request failed with status code 409
@@ -232,7 +232,6 @@ ERR_BAD_REQUEST: 84 error
 ,http://theburningship.com -> Request failed with status code 404
 ,http://trusted-home-inspection.business.site -> Request failed with status code 404
 ,http://gkama.com -> Request failed with status code 404
-,http://shah-impex.com -> Request failed with status code 403
 ,http://par1cleaners.business.site -> Request failed with status code 404
 ,http://acupuncture-oriental-massage.business.site -> Request failed with status code 404
 ,http://teambuildergroup.com -> Request failed with status code 404
@@ -279,21 +278,22 @@ ECONNRESET: 3 error
 ,http://mottshay.com -> socket hang up
 
 ECONNABORTED: 12 error
- http://yingtexun.com -> timeout of 20000ms exceeded
-,http://helixapartments.com -> timeout of 20000ms exceeded
-,http://elijahvest.com -> timeout of 20000ms exceeded
-,http://northsidemeadows.com -> timeout of 20000ms exceeded
-,http://celebaesthetics.com -> timeout of 20000ms exceeded
-,http://colonsource.com -> timeout of 20000ms exceeded
-,http://rightstudents.org -> timeout of 20000ms exceeded
-,http://gametableadventures.com -> timeout of 20000ms exceeded
-,http://transtekautosales.com -> timeout of 20000ms exceeded
-,http://aesgoldmine.com -> timeout of 20000ms exceeded
-,http://mygentxt.org -> timeout of 20000ms exceeded
-,http://befeni-usa.com -> timeout of 20000ms exceeded
+ http://yingtexun.com -> timeout of 23000ms exceeded
+,http://helixapartments.com -> timeout of 23000ms exceeded
+,http://elijahvest.com -> timeout of 23000ms exceeded
+,http://northsidemeadows.com -> timeout of 23000ms exceeded
+,http://celebaesthetics.com -> timeout of 23000ms exceeded
+,http://colonsource.com -> timeout of 23000ms exceeded
+,http://rightstudents.org -> timeout of 23000ms exceeded
+,http://gametableadventures.com -> timeout of 23000ms exceeded
+,http://transtekautosales.com -> timeout of 23000ms exceeded
+,http://aesgoldmine.com -> timeout of 23000ms exceeded
+,http://mygentxt.org -> timeout of 23000ms exceeded
+,http://befeni-usa.com -> timeout of 23000ms exceeded
 
-ERR_BAD_RESPONSE: 7 error
+ERR_BAD_RESPONSE: 8 error
  http://dumpsterrentalalhambraca.com -> Request failed with status code 523
+,http://shah-impex.com -> Request failed with status code 500
 ,http://knickonwood.com -> Request failed with status code 500
 ,http://crazy.builders -> Request failed with status code 500
 ,http://deliverance-ministry-new-york.com -> Request failed with status code 500

@@ -6,10 +6,12 @@ import {parse} from "csv-parse";
 import * as fs from "fs";
 import {configs} from "../configs";
 import pLimit from "p-limit";
-import {constants} from "../constants";
+import {constants} from "../utils/constants";
 import {Browser} from 'puppeteer';
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import {initializeSearch} from "./search";
+import {getMergedInputData} from "../utils/merge-input-data";
 
 
 interface ScrapeResult {
@@ -47,9 +49,25 @@ const outputInFile = (fails: Map<string, ScrapeResult[]>, path: string) => {
     fs.writeFileSync(path, failsString);
 };
 
+const escapeCSVField = (field: string | undefined): string => {
+    if (!field) return '';
+    if (field.includes(',') || field.includes('"') || field.includes('\n')) {
+        return `"${field.replace(/"/g, '""')}"`;
+    }
+    return field
+};
+
 const outputInFileSuccessCSV = (results: ScrapeResult[], path: string) => {
-    fs.writeFileSync(path, results.map((elem) => `"${elem.url}","${elem.phoneNumbers}","${elem.socialMediaLinks}","${elem.addresses}"\n`).join(''));
-}
+    const header = "domain,phoneNumbers,socialMediaLinks,addresses\n";
+    const rows = results.map((elem) => {
+        const url = elem.url.split(configs.HTTP_NON_SECURE)[1] || elem.url;
+        const phoneNumbers = escapeCSVField(elem.phoneNumbers);
+        const socialMediaLinks = escapeCSVField(elem.socialMediaLinks);
+        const addresses = escapeCSVField(elem.addresses);
+        return `${url},${phoneNumbers},${socialMediaLinks},${addresses}\n`;
+    }).join('');
+    fs.writeFileSync(path, header + rows);
+};
 
 const parseDomainsFromCsv = async (path: string): Promise<string[]> => {
     const domains: string[] = [];
@@ -67,7 +85,9 @@ const parseDomainsFromCsv = async (path: string): Promise<string[]> => {
 };
 
 const setOfPhoneNumbers = (textContent: string) => {
-    return [...new Set(textContent.match(constants.phoneNumberRegex.default) || [])];
+    return [...new Set(textContent.match(constants.phoneNumberRegex.default)?.map(
+            (phoneNumber) => phoneNumber.replace(/[\n\r\t\s]+/g, ' ').trim())
+        ?? [])];
 }
 
 const setOfSocialMediaLinks = ($: CheerioAPI) => {
@@ -76,12 +96,12 @@ const setOfSocialMediaLinks = ($: CheerioAPI) => {
         .get()
         .filter(href =>
             href.match(constants.socialMediaRegex.default) && href.length < 100
-        ) || [])];
+        )?.map(link => link.replace(/[\n\r\t\s]+/g, ' ').trim()) || [])];
 }
 
 const setOfAddresses = (textContent: string) => {
     return [...new Set(textContent.match(constants.addressRegex.default)?.map(
-            (address) => address.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim())
+            (address) => address.replace(/[\n\r\t\s]+/g, ' ').trim())
         ?? [])];
 }
 
@@ -130,12 +150,13 @@ const parseTextFromPage = async (textContent: string, $: CheerioAPI, url: string
             ...contactAndAboutUsPages.addresses.map((address) => address.trim())])];
     }
     console.log("Success scraping: ", url);
+    //clean up dataset and return it
     return {
         success: true,
         url,
-        phoneNumbers: phoneNumbers.toString(),
-        socialMediaLinks: socialMediaLinks.toString(),
-        addresses: addresses.toString(),
+        phoneNumbers: phoneNumbers.join(' | '),
+        socialMediaLinks: socialMediaLinks.join(' | '),
+        addresses: addresses.join(' | '),
         errorCode: ""
     };
 }
@@ -149,6 +170,7 @@ const scrapePageWithPuppeteer = async (url: string, browser: Browser) => {
         await page.setExtraHTTPHeaders({
             'Accept-Language': 'en-US,en;q=0.9',
         });
+
         await page.goto(url, {waitUntil: 'networkidle2'});
         const puppeteerPage = await page.evaluate(() => document.body.innerHTML) ?? '';
         const $puppeteer = cheerio.load(puppeteerPage);
@@ -164,10 +186,9 @@ const handleAndParseResponse = async (response: AxiosResponse, url: string, brow
     $('script, style').remove();
     let textContent = $('body').text();
 
-    if (textContent.trim().length < 100) {
+    if (textContent.trim().length < 200) { // likely a page with JS, scrape with puppeteer
         textContent += await scrapePageWithPuppeteer(url, browser) ?? '';
     }
-
 
     return await parseTextFromPage(textContent, $, url);
 }
@@ -227,8 +248,11 @@ export const scrape = async (req: Request, res: Response) => {
     });
 
     await browser.close();
-    outputInFile(fails, './output/failed_requests_log.txt');
-    outputInFileSuccessCSV(results, './output/successful_requests_log.txt');
+    outputInFile(fails, configs.FAILED_OUTPUT_PATH);
+    outputInFileSuccessCSV(results, configs.SUCCESS_OUTPUT_PATH);
+
+    initializeSearch(await getMergedInputData());
+
 
     res.status(200).json({
         successCount: results.length,

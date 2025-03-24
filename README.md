@@ -7,7 +7,7 @@
     GET /scrape -> Scrapes the websites in the sample-websites.csv file and returns the titles of the websites
     
     GET /search -> Searches the scraped data for the given query, returns the results
-    query params: - name, website, phoneNumber, facebook
+    query params: - name, website, phoneNumber, facebook -> strings
 
 ### Project config, dependencies and environment:
 
@@ -182,24 +182,42 @@ but in this case it feels like trying to hit kill a fly with a bazooka. Cool in 
 
 The boosts in my search are:
 
-- domain name: the most important, as it's a unique identifier
-- company all names, second most important, as it's really leading to a good result
-- phone number, facebook : given the noise and, I will boost just them a little
+- domain name: the most important, as it's a unique identifier ( got to 4 )
+- company all names, second most important, as it's really leading to a good result ( got to 3)
+- phone number, facebook : given the noise, I will boost just them a little, half of the company name.
 
-Not much else, keep it a bit fuzzy, use OR to have felixiblity in the search.
+Not much else, keep it a bit fuzzy, use combineWith OR to have felixiblity in the search.
 
 The results are satisfying, I will publish them (testing the api with the recomended input) in the root of the project
-in.
+in the file **API_RESULTS.pdf**
 
 Results :
 
 - 108 requests: all the data independent and the request with all the data combined.
 - 12 red -> returned other result rather what was expected
 - 10 orange -> fuzzy data, put in there to show the flexibility of the search
-- The rest returned the expected result !!! :D
+- 86 green -> returned the expected result !!! :D
 
-Full analysis in the file **API_RESULTS.pdf**
+#### STEP 3:
 
-STEP 3:
+Measuring the accuracy of your matches. More ways to go here:
+
+- A good source of truth would be a great, gatherer over time by validated data by hand and/or algorithms or available
+  and structured data on the web
+- Try different algos, different approaches, and see how they fare, even better to validate them with the source of
+  truth.
+- Throw in some noise, see how it changes the match values and fine tune the search.
+- try to find the edge cases, where an website or phone number differes by a few chars, and see how the search
+  handles them.
+- doing the math, see how the percentages evolve iteration over iteration.
+
+### Closing thoughts
+
+As a first iterations of a scraper, I'm happy with the results.
+It gave me manny chanllenges, and I learned a lot from them.
+While there are things to improve, tools I cloud use, in this short amount of time,
+the scale, the data gathered, the complexity and the results are satisfying.
+
+Cheers! :D
 
 
